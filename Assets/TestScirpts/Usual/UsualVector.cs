@@ -15,6 +15,10 @@ public static class UsualVector {
     public static bool Approximately(this Vector3 a, Vector3 b) =>
             Mathf.Approximately(a.x, b.x) && Mathf.Approximately(a.y, b.y) && Mathf.Approximately(a.z, b.z);
 
+
+    public static float ToDegree(this Vector2 direction) =>
+        Mathf.Atan2(direction.x, direction.y);
+    
     public static Vector2 Todirection(this float degree) =>
         new(Mathf.Cos(degree), Mathf.Sin(degree));
     
