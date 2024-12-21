@@ -19,8 +19,6 @@ public class Juwel: MonoBehaviour {
         if (other.transform.TryGetComponent(out WormPart wormPart))
         {
             AudioManager.instance.PlayAudio("PickaxeHit");
-        if (other.transform.TryGetComponent(out WormPart wormPart)) {
-            
             ScoreManager.Instance.AddScore(Value);
             WormManager.Instance.CreateTail(Vector3.zero, GetComponent<SpriteRenderer>().sprite);
             Destroy(gameObject);

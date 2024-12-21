@@ -1,6 +1,7 @@
 using System;
 using SSH.Core.Audios;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -48,6 +49,15 @@ public class BallMovement : MonoBehaviour {
         }
 
         transform.Rotate(new(0, 0, Time.deltaTime * rotatingPower));
+
+        if (Keyboard.current.spaceKey.isPressed)
+        {
+            power += Time.deltaTime * 15;
+        }
+        else
+        {
+            power = 8;
+        }
     }
 
     private Vector2 before = Vector2.zero;

@@ -9,16 +9,18 @@ namespace SSH.Core.Audios
         public AudioBaseSO audioBase;
         public AudioPair[] audioPairs;
         private Dictionary<string, AudioClip> _audioDictionary;
-        [SerializeField] private GameObject _audioPlayer;
-        private GameObject[] _audioPlayers = new GameObject[99];
+        public GameObject _audioPlayer;
+        private List<GameObject> _audioPlayers = new List<GameObject>(); // List로 관리
         private int index = 0;
         
         private void Awake()
         {
             AddAudiosToDictionary();
-            for (int i = 1; i <= 99; i++)
+            for (int i = 0; i < 99; i++)
             {
-                _audioPlayers[i - 1] = Instantiate(_audioPlayer, transform);
+                GameObject newAudioPlayer = Instantiate(_audioPlayer, transform);
+                newAudioPlayer.name = $"AudioPlayer_{i + 1}";
+                _audioPlayers.Add(newAudioPlayer); // List에 추가
             }
         }
 
@@ -33,7 +35,7 @@ namespace SSH.Core.Audios
             AudioSource audioSource = _audioPlayers[index].GetComponent<AudioSource>();
             audioSource.clip = _audioDictionary[key];
             audioSource.Play();
-            index = (index + 1) % 100;
+            index = (index + 1) % 99;
         }
     }
 }
