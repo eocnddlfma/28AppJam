@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f66185513210e314790cc9ceee7c8944
+guid: 7f4ddb47918010846b5208515323c10d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1772585586625444833
-    second: background stone_0
+      213: -2674320591945485473
+    second: background_stone_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 32
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: background stone_0
+      name: background_stone_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 33
-        height: 33
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f14863fecc28667e0800000000000000
-      internalID: -1772585586625444833
+      spriteID: f53b39d3797e2ead0800000000000000
+      internalID: -2674320591945485473
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      background stone_0: -1772585586625444833
+      background_stone_0: -2674320591945485473
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -9,6 +9,7 @@ public class BallMovement : MonoBehaviour {
     [SerializeField] private float power = 30;
     [SerializeField] private Vector2 moveDirection = Vector2.zero;
 
+    private float rotatingPower = 400;
     private Vector2 velo = Vector2.zero;
     private Quaternion currentView;
     private Rigidbody2D player = null;
@@ -44,6 +45,8 @@ public class BallMovement : MonoBehaviour {
             var fixVelo = player.linearVelocity.SetPower(power);
             player.linearVelocity = fixVelo;
         }
+
+        transform.Rotate(new(0, 0, Time.deltaTime * rotatingPower));
     }
 
     private Vector2 before = Vector2.zero;
