@@ -24,4 +24,17 @@ public static class UsualVector {
     
     public static Vector2 ToVector2(this Vector3 target) => new(target.x, target.y);
     public static Vector3 ToVecotr3(this Vector2 target) => new(target.x, target.y, 0);
+
+    public static float Distance(this Vector2 target) 
+        => Mathf.Sqrt(target.x * target.x + target.y * target.y);
+
+    public static Vector2 SetPower(this Vector2 target, float power) {
+
+        var dist = target.Distance();
+        if (dist == 0) {
+            target = Vector2.up;
+            dist = target.Distance();
+        }
+        return target / target.Distance() * power;
+    }
 }

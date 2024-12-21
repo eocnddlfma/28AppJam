@@ -35,6 +35,17 @@ public class BallMovement : MonoBehaviour {
         }
     }
 
+    private void Update() {
+
+        //Set speed steadly
+        var distance = player.linearVelocity.Distance();
+        
+        if (distance < power) {
+            var fixVelo = player.linearVelocity.SetPower(power);
+            player.linearVelocity = fixVelo;
+        }
+    }
+
     private Vector2 before = Vector2.zero;
     private void OnCollisionEnter2D(Collision2D other) {
 
@@ -42,7 +53,6 @@ public class BallMovement : MonoBehaviour {
         if (before == ballToBlockDirection) return;
 
         before = ballToBlockDirection;
-        Debug.Log($"{ballToBlockDirection}, velo: {velo}");
         
         //contect up or down
         if (Mathf.Approximately(ballToBlockDirection.x,0)) {
