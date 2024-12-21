@@ -1,9 +1,8 @@
 using System.Text;
 using UnityEditor;
-using UnityEditor.EditorTools;
 using UnityEngine;
 
-namespace BSM.Core.Audios
+namespace SSH.Core.Audios
 {
     [CustomEditor(typeof(AudioManager))]
     public class AudioManagerEditor : Editor
@@ -50,7 +49,19 @@ namespace BSM.Core.Audios
 
                 serializedObject.Update();
             }
+
+            GUILayout.Space(20);
+
+            GUILayout.Label("GameObject Settings");
+            _audioManager._audioPlayer = EditorGUILayout.ObjectField("Game Object", _audioManager._audioPlayer, typeof(GameObject), true) as GameObject;
+
+            // Save changes if any field was modified
+            if (GUI.changed)
+            {
+                EditorUtility.SetDirty(_audioManager);
+            }
         }
+
         private void CreateaudioBaseAsset(AudioBaseSO cloneAudioBaseSO)
         {
             var uniqueFileName = AssetDatabase.GenerateUniqueAssetPath($"Assets/New Audio Base.asset");

@@ -15,9 +15,8 @@ public class EnlargeCameraLens : MonoBehaviour
     [SerializeField ]private float maxValue = 8f;
     void Update()
     {
-        print(Mathf.Abs(_target.position.x - transform.position.x));
-        print(Mathf.Abs(_target.position.y - transform.position.y));
-        maxValue = Mathf.Max(Mathf.Abs(_target.position.x - transform.position.x), Mathf.Abs(_target.position.y- transform.position.y), maxValue);
+        maxValue = Mathf.Max(Mathf.Abs(_target.position.x - transform.position.x) * 0.7f,
+            Mathf.Abs(_target.position.y- transform.position.y) * 1.3f, maxValue);
         _camera.Lens.OrthographicSize = maxValue;
     }
 }

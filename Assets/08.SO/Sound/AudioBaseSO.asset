@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: AudioBaseSO
   m_EditorClassIdentifier: 
   pairs:
-  - key: 
-    clip: {fileID: 0}
+  - key: GetItem
+    clip: {fileID: 8300000, guid: 6e4448bdd2c543e408dd43204a81d9c8, type: 3}
+  - key: PickaxeHit
+    clip: {fileID: 8300000, guid: ed767d7e88cd5bc429ff037b3fe56b31, type: 3}

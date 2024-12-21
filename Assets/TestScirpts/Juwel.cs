@@ -1,4 +1,5 @@
 ﻿using System;
+using SSH.Core.Audios;
 using SSH.Snake;
 using UnityEngine;
 
@@ -15,8 +16,9 @@ public class Juwel: MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.TryGetComponent(out WormPart wormPart)) {
-            
+        if (other.transform.TryGetComponent(out WormPart wormPart))
+        {
+            AudioManager.instance.PlayAudio("PickaxeHit");
             ScoreManager.Instance.AddScore(Value);
             WormManager.Instance.CreateTail(Vector3.zero, GetComponent<SpriteRenderer>().sprite);
             Destroy(gameObject);
