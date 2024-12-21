@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8268dd60045256a4486471f4d2443704
+guid: 5f0fe29ab2a6e534486a992d62d51578
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 32
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -103,7 +103,7 @@ TextureImporter:
       name: coal_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
         width: 30
         height: 32

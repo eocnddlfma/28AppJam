@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class BlockGenerator: MonoBehaviour {
-    private const int size = 30;
+    private const int size = 50;
     private readonly Vector2Int defaultPlayRange = new(7,5);
     private static GameObject folder = null;
     
