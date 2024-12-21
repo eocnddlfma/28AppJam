@@ -10,7 +10,6 @@ public class Block: MonoBehaviour {
 
         Health -= power;
         if (Health <= 0) {
-            Debug.Log("dead");  
             Health = 0;
             OnDead();
             return true;
