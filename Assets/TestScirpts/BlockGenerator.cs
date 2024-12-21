@@ -37,7 +37,7 @@ public class BlockGenerator: MonoBehaviour {
                 if (info.Prefab != null) {
                     
                     Instantiate(info.Prefab).GetComponent<Block>()
-                        .Set(new(i,j), info.JuwelType);
+                        .Set(new(i,j), info.JuwelType, mineralPercentList[index]);
                 }
             }
         }

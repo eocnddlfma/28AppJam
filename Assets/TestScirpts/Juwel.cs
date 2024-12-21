@@ -13,7 +13,7 @@ public class Juwel: MonoBehaviour {
         gameObject.isStatic = true;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionTrigger2D(Collider2D other)
     {
         if (other.transform.TryGetComponent(out WormPart wormPart))
         {
