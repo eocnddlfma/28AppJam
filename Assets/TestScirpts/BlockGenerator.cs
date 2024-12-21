@@ -7,8 +7,10 @@ using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class BlockGenerator: MonoBehaviour {
-    [SerializeField]private int size = 30;
-
+    private const int size = 30;
+    private readonly Vector2Int defaultPlayRange = new(7,5);
+    
+    
     [SerializeField] private SerializableDictionary<MineralType, MineralScriptable> matchInfoType = new();
     private List<MineralType> mineralPercentList = new();
     private void Awake() {
@@ -26,6 +28,9 @@ public class BlockGenerator: MonoBehaviour {
         for (int i = -size; i <= size; i++) {
             for (int j = -size; j <= size; j++) {
 
+                if (-defaultPlayRange.x <= i && i <= defaultPlayRange.x && -defaultPlayRange.y <= j && j <= defaultPlayRange.y)
+                    continue;
+                
                 int index = Random.Range(0, mineralPercentList.Count);
                 var info = matchInfoType.Data[mineralPercentList[index]];
 
