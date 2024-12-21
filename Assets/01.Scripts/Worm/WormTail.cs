@@ -8,10 +8,14 @@ namespace SSH.Snake
     {
         [SerializeField]private WormMovement _parentPart;
         [SerializeField] private float _delayTime = 0.2f;
-        
         public void SetParent(WormMovement parent)
         {
             _parentPart = parent;
+        }
+
+        public void SetNotLastTail()
+        {
+            
         }
         
 

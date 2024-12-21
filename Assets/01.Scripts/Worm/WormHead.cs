@@ -69,6 +69,14 @@ namespace SSH.Snake
             }
         }
 
+        private void OnDrawGizmos()
+        {
+            
+            Gizmos.DrawLine(transform.position, transform.up/2);
+            Gizmos.DrawLine(transform.position, transform.right/2);
+            Gizmos.DrawLine(transform.position, -transform.right/2);
+            
+        }
 
         private void HandleLeftButtonEvent()
         {

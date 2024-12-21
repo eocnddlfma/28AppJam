@@ -16,10 +16,14 @@ namespace SSH.Snake
     
     public class WormMovement : MonoBehaviour
     {
+        public Vector3 Point3;
+        public Vector3 Point4;
+        
         public Queue<PositionAndTime> PastDataQueue = new Queue<PositionAndTime>();
         
         public virtual void FixedUpdate()
         {
+            Point3 = 
             AddPastPositionToQueue();
         }
 
