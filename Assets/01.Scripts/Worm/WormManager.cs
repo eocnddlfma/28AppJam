@@ -42,7 +42,7 @@ public class WormManager : MonoBehaviour
     {
         GameObject newTail = Instantiate(_tailObject, pos, Quaternion.identity);
         newTail.GetComponent<WormTail>().SetParent(_currentTail);
-        newTail.GetComponent<SpriteRenderer>().sprite = sprite;
+        newTail.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
         _currentTail = newTail.GetComponent<WormPart>();
     }
 }
