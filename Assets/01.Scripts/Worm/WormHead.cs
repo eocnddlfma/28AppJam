@@ -108,7 +108,7 @@ namespace SSH.Snake
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.transform.CompareTag("Tail") || other.transform.CompareTag("Mineral"))
+            if (other.transform.CompareTag("Tail") || other.transform.CompareTag("Mineral") || other.transform.CompareTag("Weapon"))
             {
                 isDead = true;
                 

@@ -13,11 +13,12 @@ public class Juwel: MonoBehaviour {
         gameObject.isStatic = true;
     }
 
-    private void OnCollisionTrigger2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.transform.TryGetComponent(out WormPart wormPart))
         {
             //점수 추가해줘야함
+            print("isitworking???");
             WormManager.Instance.CreateTail(other.transform.position, other.transform.GetComponent<SpriteRenderer>().sprite);
             Destroy(gameObject);
         }
