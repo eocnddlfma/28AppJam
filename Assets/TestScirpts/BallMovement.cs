@@ -24,6 +24,7 @@ public class BallMovement : MonoBehaviour {
 
     private void VelocityUpdate() {
         player.linearVelocity = velo;
+        Debug.Break();
     }
     
     void Awake() {

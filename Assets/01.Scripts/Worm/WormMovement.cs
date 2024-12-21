@@ -23,7 +23,8 @@ namespace SSH.Snake
         
         public virtual void FixedUpdate()
         {
-            Point3 = 
+            Point3 = transform.position + transform.right; 
+            Point4 = transform.position - transform.right; 
             AddPastPositionToQueue();
         }
 
