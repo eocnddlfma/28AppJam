@@ -4,17 +4,16 @@ using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class BallMovement : MonoBehaviour {
-    private const int RandomDegreeRange = 5;
     
-    Rigidbody2D player = null;
+    //It controle Default speed. it can be erased
     [SerializeField] private float power = 30;
     [SerializeField] private Vector2 moveDirection = Vector2.zero;
 
     private Vector2 velo = Vector2.zero;
     private Quaternion currentView;
+    private Rigidbody2D player = null;
+    private const int RandomDegreeRange = 5;
     
-    private const int collisionDegree = 90;
-
     private readonly Vector2[] directions = new Vector2[] {
         Vector2.up,
         Vector2.down,
