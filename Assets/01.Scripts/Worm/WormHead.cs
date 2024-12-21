@@ -6,12 +6,12 @@ using UnityEngine.Serialization;
 namespace SSH.Snake
 {  
     [RequireComponent(typeof(Rigidbody2D))]
-    public class WormHead : WormMovement
+    public class WormHead : WormPart
     {
         [SerializeField] private InputSO _input;
 
         private Enums.Direction _inputMoveDirection;
-        private Enums.Direction _currentMoveDirection;
+        private Enums.Direction _currentMoveDirection = Enums.Direction.Up;
         private Rigidbody2D _rigidCompo;
         private Vector2 _moveVector;
         [SerializeField] private float _moveSpeedPerSecond = 0.4f;
@@ -34,39 +34,49 @@ namespace SSH.Snake
         private void Move()
         {
             _rigidCompo.linearVelocity = _moveVector * _moveSpeedPerSecond;
+            _rigidCompo.MoveRotation(Quaternion.Euler(0f, 0f, Mathf.Atan2(_moveVector.y, _moveVector.x) * Mathf.Rad2Deg - 90f));
             //_rigidCompo.MovePosition(transform.position + (Vector3)_moveVector * _moveSpeedPerSecond * Time.deltaTime );
-            print($"time : {Time.time}, pos : {transform.position}");
+            //print($"time : {Time.time}, pos : {transform.position}");
         }
         
         public void SetDirection()
         {
-            switch (_inputMoveDirection)
+            (_moveVector, _currentMoveDirection) = _inputMoveDirection switch
             {
-                case Enums.Direction.Left:
-                    if (_currentMoveDirection == Enums.Direction.Right) break;
-                    _moveVector.x = -1;
-                    _moveVector.y = 0;
-                    _currentMoveDirection = _inputMoveDirection;
-                    break;
-                case Enums.Direction.Up:
-                    if (_currentMoveDirection == Enums.Direction.Down) break;
-                    _moveVector.x = 0;
-                    _moveVector.y = 1;
-                    _currentMoveDirection = _inputMoveDirection;
-                    break;
-                case Enums.Direction.Right:
-                    if (_currentMoveDirection == Enums.Direction.Left) break;
-                    _moveVector.x = 1;
-                    _moveVector.y = 0;
-                    _currentMoveDirection = _inputMoveDirection;
-                    break;
-                case Enums.Direction.Down:
-                    if (_currentMoveDirection == Enums.Direction.Up) break;
-                    _moveVector.x = 0;
-                    _moveVector.y = -1;
-                    _currentMoveDirection = _inputMoveDirection;
-                    break;
-            }
+                Enums.Direction.Left  when _currentMoveDirection != Enums.Direction.Right => (Vector2Int.left, Enums.Direction.Left),
+                Enums.Direction.Up    when _currentMoveDirection != Enums.Direction.Down  => (Vector2Int.up, Enums.Direction.Up),
+                Enums.Direction.Right when _currentMoveDirection != Enums.Direction.Left  => (Vector2Int.right, Enums.Direction.Right),
+                Enums.Direction.Down  when _currentMoveDirection != Enums.Direction.Up    => (Vector2Int.down, Enums.Direction.Down),
+                _ => (_moveVector, _currentMoveDirection)
+            };
+            
+            // switch (_inputMoveDirection)
+            // {
+            //     case Enums.Direction.Left:
+            //         if (_currentMoveDirection == Enums.Direction.Right) break;
+            //         _moveVector.x = -1;
+            //         _moveVector.y = 0;
+            //         _currentMoveDirection = _inputMoveDirection;
+            //         break;
+            //     case Enums.Direction.Up:
+            //         if (_currentMoveDirection == Enums.Direction.Down) break;
+            //         _moveVector.x = 0;
+            //         _moveVector.y = 1;
+            //         _currentMoveDirection = _inputMoveDirection;
+            //         break;
+            //     case Enums.Direction.Right:
+            //         if (_currentMoveDirection == Enums.Direction.Left) break;
+            //         _moveVector.x = 1;
+            //         _moveVector.y = 0;
+            //         _currentMoveDirection = _inputMoveDirection;
+            //         break;
+            //     case Enums.Direction.Down:
+            //         if (_currentMoveDirection == Enums.Direction.Up) break;
+            //         _moveVector.x = 0;
+            //         _moveVector.y = -1;
+            //         _currentMoveDirection = _inputMoveDirection;
+            //         break;
+            // }
         }
 
         private void OnDrawGizmos()
