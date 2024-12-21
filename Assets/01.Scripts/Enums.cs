@@ -7,6 +7,7 @@ public class Enums
         Left,
         Up,
         Right,
-        Down
+        Down,
+        None
     }
 }
