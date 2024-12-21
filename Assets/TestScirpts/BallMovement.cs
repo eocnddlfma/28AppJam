@@ -9,7 +9,9 @@ public class BallMovement : MonoBehaviour {
     Rigidbody2D player = null;
     [SerializeField] private float power = 30;
     [SerializeField] private Vector2 moveDirection = Vector2.zero;
-
+    private GameObject before = null;
+    
+    
     private const int collisionDegree = 90;
     private readonly Vector2[] directions = new Vector2[] {
         Vector2.up,
@@ -18,16 +20,24 @@ public class BallMovement : MonoBehaviour {
         Vector2.right
     };
     
-    void Awake()
-    {
+    void Awake() {
+
+        float tempDegree = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+        Debug.Log(tempDegree);
+        transform.Rotate(new Vector3(0, 0, tempDegree));
+        
         if (player == null) {
             player = GetComponent<Rigidbody2D>();
             player.AddForce(power * (moveDirection.normalized));
         }
     }
 
+
     private void OnCollisionEnter2D(Collision2D other) {
 
+        if (other.gameObject == before) return;
+        before = other.gameObject;
+        
         var collisionDir = (other.transform.position - transform.position).normalized;
 
         float best = 0;
@@ -47,10 +57,12 @@ public class BallMovement : MonoBehaviour {
         var playerVelocity = player.linearVelocity.normalized;
 
         var currentDegree = transform.rotation;
-        var addDegree = currentDegree.Add(UsualQuarternion.ZRotation(90 + Random.Range(0, alphaDegree + 1)));
-        float result = Mathf.Sign(playerVelocity.DotProduction(ballToBlockDirection));
+        Debug.Log(currentDegree.eulerAngles);
+        var addDegree = currentDegree.Add(UsualQuarternion.ZRotation(90));
+        float result = playerVelocity.DotProduction(ballToBlockDirection) > 0 ? 1 : -1;
         var rotation = addDegree.Multiple(result);
+        transform.Rotate(rotation.eulerAngles);
 
-        player.linearVelocity = rotation;
+        player.linearVelocity = 10 * rotation.eulerAngles.z.Todirection().normalized;
     }
 }
