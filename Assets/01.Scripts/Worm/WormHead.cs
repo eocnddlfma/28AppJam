@@ -10,8 +10,8 @@ namespace SSH.Snake
     {
         [SerializeField] private InputSO _input;
 
-        private Enums.Direction _inputMoveDirection;
-        private Enums.Direction _currentMoveDirection = Enums.Direction.Up;
+        private Direction _inputMoveDirection;
+        private Direction _currentMoveDirection = Direction.Up;
         
         private Rigidbody2D _rigidCompo;
         private Animator _animatorCompo;
@@ -59,10 +59,10 @@ namespace SSH.Snake
         {
             (_moveVector, _currentMoveDirection) = _inputMoveDirection switch
             {
-                Enums.Direction.Left  when _currentMoveDirection != Enums.Direction.Right => (Vector2Int.left, Enums.Direction.Left),
-                Enums.Direction.Up    when _currentMoveDirection != Enums.Direction.Down  => (Vector2Int.up, Enums.Direction.Up),
-                Enums.Direction.Right when _currentMoveDirection != Enums.Direction.Left  => (Vector2Int.right, Enums.Direction.Right),
-                Enums.Direction.Down  when _currentMoveDirection != Enums.Direction.Up    => (Vector2Int.down, Enums.Direction.Down),
+                Direction.Left  when _currentMoveDirection != Direction.Right => (Vector2Int.left, Direction.Left),
+                Direction.Up    when _currentMoveDirection != Direction.Down  => (Vector2Int.up, Direction.Up),
+                Direction.Right when _currentMoveDirection != Direction.Left  => (Vector2Int.right, Direction.Right),
+                Direction.Down  when _currentMoveDirection != Direction.Up    => (Vector2Int.down, Direction.Down),
                 _ => (_moveVector, _currentMoveDirection)
             };
 
@@ -139,25 +139,25 @@ namespace SSH.Snake
         private void HandleLeftButtonEvent()
         {
             if (IsAbleInput())
-                _inputMoveDirection = Enums.Direction.Left;
+                _inputMoveDirection = Direction.Left;
         }
 
         private void HandleUpButtonEvent()
         {
             if (IsAbleInput())
-                _inputMoveDirection = Enums.Direction.Up;
+                _inputMoveDirection = Direction.Up;
         }
 
         private void HandleRightButtonEvent()
         {
             if (IsAbleInput())
-                _inputMoveDirection = Enums.Direction.Right;
+                _inputMoveDirection = Direction.Right;
         }
 
         private void HandleDownButtonEvent()
         {
             if (IsAbleInput())
-                _inputMoveDirection = Enums.Direction.Down;
+                _inputMoveDirection = Direction.Down;
         }
         #endregion
     }
