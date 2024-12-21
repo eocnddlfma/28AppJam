@@ -4,7 +4,7 @@ using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class BallMovement : MonoBehaviour {
-    private const int alphaDegree = 5;
+    private const int RandomDegreeRange = 5;
     
     Rigidbody2D player = null;
     [SerializeField] private float power = 30;
@@ -22,43 +22,43 @@ public class BallMovement : MonoBehaviour {
         Vector2.right
     };
 
-    private void VelocityUpdate() {
-        player.linearVelocity = velo;
-    }
-    
     void Awake() {
 
         float degree = moveDirection.ToDegree();
         currentView = Quaternion.Euler(0, 0, degree);
         
-        /*if (player == null) {
+        if (player == null) {
             player = GetComponent<Rigidbody2D>();
             velo = (power * (moveDirection.normalized));
             player.linearVelocity = velo;
-        }*/
+        }
     }
 
     private Vector2 before = Vector2.zero;
-    /*private void OnCollisionEnter2D(Collision2D other) {
+    private void OnCollisionEnter2D(Collision2D other) {
 
+        
         var ballToBlockDirection = FindDirection(transform.position, other.transform.position);
-        if (before == ballToBlockDirection)
-            return;
+        if (before == ballToBlockDirection) return;
 
         before = ballToBlockDirection;
+        Debug.Log($"{ballToBlockDirection}, velo: {velo}");
         
-        Debug.Log(ballToBlockDirection);
-
-        var temp = velo;
-        if (ballToBlockDirection.x == 0) {
-            velo.x *= -1;
+        if (Mathf.Approximately(ballToBlockDirection.x,0)) {
+            velo.y *= -1;
         }
             
         else {
-            velo.y = -1;
+            velo.x *= -1;
         }
 
-        VelocityUpdate();
+        float random = (float)Random.Range(-RandomDegreeRange, RandomDegreeRange);
+        Debug.Log(velo.ToDegree() + random);
+        
+        velo = (velo.ToDegree() + random).Todirection() * power;
+        Debug.Log(velo.ToDegree());
+        
+        player.linearVelocity = velo;
     }
 
     private Vector2 FindDirection(Vector2 ball, Vector2 wall) {
@@ -80,5 +80,5 @@ public class BallMovement : MonoBehaviour {
         }
 
         return ballToBlockDirection;
-    }*/
+    }
 }

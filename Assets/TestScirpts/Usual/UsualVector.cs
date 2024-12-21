@@ -20,7 +20,7 @@ public static class UsualVector {
         Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
     
     public static Vector2 Todirection(this float degree) =>
-        new(Mathf.Cos(degree), Mathf.Sin(degree));
+        new(Mathf.Sin(degree * Mathf.Deg2Rad), Mathf.Cos(degree * Mathf.Deg2Rad));
     
     public static Vector2 ToVector2(this Vector3 target) => new(target.x, target.y);
     public static Vector3 ToVecotr3(this Vector2 target) => new(target.x, target.y, 0);
