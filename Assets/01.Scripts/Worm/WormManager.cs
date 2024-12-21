@@ -11,6 +11,8 @@ public class WormManager : MonoBehaviour
     [SerializeField] private GameObject _tailObject;
     [SerializeField] private Sprite _startTailSprite;
 
+    public event Action OnDeadEvent;
+
     private void Awake()
     {
         // 싱글톤 인스턴스 설정
@@ -20,17 +22,15 @@ public class WormManager : MonoBehaviour
             Destroy(gameObject); // 중복된 인스턴스 삭제
             return;
         }
-
         Instance = this;
-        DontDestroyOnLoad(gameObject); // 씬 전환 시 삭제되지 않도록 설정
     }
 
     private void Start()
     {
-        CreateTail(Vector3.zero, _startTailSprite);
-        CreateTail(Vector3.zero, _startTailSprite);
-        CreateTail(Vector3.zero, _startTailSprite);
-        CreateTail(Vector3.zero, _startTailSprite);
+        CreateTail(Vector3.right * 4, _startTailSprite);
+        CreateTail(Vector3.right, _startTailSprite);
+        CreateTail(Vector3.right, _startTailSprite);
+        CreateTail(Vector3.right, _startTailSprite);
     }
 
     private void Update()
@@ -38,11 +38,16 @@ public class WormManager : MonoBehaviour
         
     }
 
-    public void CreateTail(Vector3 pos, Sprite sprite = null)
+    public void CreateTail(Vector3 offset ,Sprite sprite = null)
     {
-        GameObject newTail = Instantiate(_tailObject, pos, Quaternion.identity);
+        GameObject newTail = Instantiate(_tailObject, _tailObject.transform.position + offset,Quaternion.identity);
         newTail.GetComponent<WormTail>().SetParent(_currentTail);
         newTail.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
         _currentTail = newTail.GetComponent<WormPart>();
+    }
+
+    public void InvokeDeadEvent()
+    {
+        OnDeadEvent?.Invoke();
     }
 }

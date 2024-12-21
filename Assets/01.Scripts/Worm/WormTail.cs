@@ -18,7 +18,10 @@ namespace SSH.Snake
 
         private void Awake()
         {
-            print("awake");
+            WormManager.Instance.OnDeadEvent += () =>
+            {
+                Destroy(gameObject);
+            };
         }
 
         public override void FixedUpdate()

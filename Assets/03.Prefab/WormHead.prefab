@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 5097733899341077491}
   - component: {fileID: 5762796940742400902}
   - component: {fileID: 5037695931323684879}
+  - component: {fileID: 2974405166691524770}
   m_Layer: 0
   m_Name: WormHead
   m_TagString: Untagged
@@ -151,7 +152,7 @@ Transform:
   m_GameObject: {fileID: 9092061116917987002}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.028, y: -0.28, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -215,4 +216,40 @@ MonoBehaviour:
   _currentHead: {fileID: 9092061116917987002}
   _currentTail: {fileID: 5762796940742400902}
   _tailObject: {fileID: 7898658837505180361, guid: cfd3bf10159a7874d867b494fad3bcd6, type: 3}
-  _startTailSprite: {fileID: 5725184139431673129, guid: 40d1b66abfbda424e81a9e21854811e9, type: 3}
+  _startTailSprite: {fileID: 21300000, guid: 40d1b66abfbda424e81a9e21854811e9, type: 3}
+--- !u!58 &2974405166691524770
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9092061116917987002}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.3

@@ -106,14 +106,22 @@ namespace SSH.Snake
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            isDead = true;
-            
-            _animatorCompo.SetBool("Move", false);
-            _animatorCompo.SetBool("Die", false);
-            //죽으면 발생하는 이벤트 발생해주기.
+            if (other.transform.CompareTag("Tail") || other.transform.CompareTag("Mineral"))
+            {
+                isDead = true;
+                
+                _animatorCompo.SetBool("Move", false);
+                _animatorCompo.SetBool("Die", true);
+
+                _rigidCompo.linearVelocity = Vector3.zero;
+                
+                WormManager.Instance.InvokeDeadEvent();
+
+            }
         }
-
-
+        
+        
+        
         private void OnDrawGizmos()
         {
             

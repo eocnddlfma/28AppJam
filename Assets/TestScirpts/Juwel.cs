@@ -18,7 +18,7 @@ public class Juwel: MonoBehaviour {
         if (other.transform.TryGetComponent(out WormPart wormPart))
         {
             //점수 추가해줘야함
-            WormManager.Instance.CreateTail(transform.position, other.transform.GetComponent<JuwelScriptable>().Image);
+            WormManager.Instance.CreateTail(other.transform.position, other.transform.GetComponent<SpriteRenderer>().sprite);
             Destroy(gameObject);
         }
     }
