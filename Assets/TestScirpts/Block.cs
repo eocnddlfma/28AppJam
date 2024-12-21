@@ -47,7 +47,7 @@ public class Block: MonoBehaviour {
         if(juwel != null) 
             Instantiate(juwel.Prefab, folder.transform)
                 .GetComponent<Juwel>().Set(transform.position, juwel.Score);
-        //TODO: Add score + 1
+        ScoreManager.Instance.AddScore(1);
         Destroy(gameObject);
         
     }
