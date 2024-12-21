@@ -31,11 +31,11 @@ public class BallMovement : MonoBehaviour {
         float degree = moveDirection.ToDegree();
         currentView = Quaternion.Euler(0, 0, degree);
         
-        if (player == null) {
+        /*if (player == null) {
             player = GetComponent<Rigidbody2D>();
             velo = (power * (moveDirection.normalized));
-            VelocityUpdate();
-        }
+            player.linearVelocity = velo;
+        }*/
     }
 
     private Vector2 before = Vector2.zero;
