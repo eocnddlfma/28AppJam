@@ -9,6 +9,7 @@ public class WormManager : MonoBehaviour
     [SerializeField] private GameObject _currentHead;
     [SerializeField] private WormPart _currentTail;
     [SerializeField] private GameObject _tailObject;
+    [SerializeField] private Sprite _startTailSprite;
 
     private void Awake()
     {
@@ -26,16 +27,20 @@ public class WormManager : MonoBehaviour
 
     private void Start()
     {
-        CreateTail();
+        CreateTail(Vector3.zero, _startTailSprite);
+        CreateTail(Vector3.zero, _startTailSprite);
+        CreateTail(Vector3.zero, _startTailSprite);
+        CreateTail(Vector3.zero, _startTailSprite);
     }
 
     private void Update()
     {
+        
     }
 
-    public void CreateTail(Sprite sprite = null)
+    public void CreateTail(Vector3 pos, Sprite sprite = null)
     {
-        GameObject newTail = Instantiate(_tailObject, _currentTail.transform.position, Quaternion.identity);
+        GameObject newTail = Instantiate(_tailObject, pos, Quaternion.identity);
         newTail.GetComponent<WormTail>().SetParent(_currentTail);
         newTail.GetComponent<SpriteRenderer>().sprite = sprite;
         _currentTail = newTail.GetComponent<WormPart>();

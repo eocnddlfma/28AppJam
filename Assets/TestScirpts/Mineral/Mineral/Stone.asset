@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977e635e540a498eb42f91716882858e, type: 3}
   m_Name: Stone
   m_EditorClassIdentifier: 
-  image: {fileID: -1772585586625444833, guid: f66185513210e314790cc9ceee7c8944, type: 3}
+  prefab: {fileID: 0}
   percent: 0.4
-  type: 0
+  juwelType: {fileID: 0}

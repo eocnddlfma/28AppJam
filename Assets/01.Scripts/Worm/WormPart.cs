@@ -37,10 +37,6 @@ namespace SSH.Snake
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.transform.CompareTag("jewel"))
-            {
-                WormManager.Instance.CreateTail(other.transform.GetComponent<JuwelScriptable>().Image);
-            }
         }
     }
 }
