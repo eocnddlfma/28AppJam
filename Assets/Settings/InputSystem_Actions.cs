@@ -67,7 +67,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""27c5f898-bc57-4ee1-8800-db469aca5fe3"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -139,6 +139,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""DownButton"",
                     ""type"": ""Button"",
                     ""id"": ""48b7142a-6560-45ff-9371-1505ff2ef06c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpaceButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""44eebed0-23ee-499c-b932-3536ebcaeb8d"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -572,6 +581,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""DownButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""097ef6e4-cca8-4167-b2d7-9eb70977a5c1"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpaceButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1172,6 +1192,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_UpButton = m_Player.FindAction("UpButton", throwIfNotFound: true);
         m_Player_RightButton = m_Player.FindAction("RightButton", throwIfNotFound: true);
         m_Player_DownButton = m_Player.FindAction("DownButton", throwIfNotFound: true);
+        m_Player_SpaceButton = m_Player.FindAction("SpaceButton", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1264,6 +1285,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_UpButton;
     private readonly InputAction m_Player_RightButton;
     private readonly InputAction m_Player_DownButton;
+    private readonly InputAction m_Player_SpaceButton;
     public struct PlayerActions
     {
         private @InputSystem_Actions m_Wrapper;
@@ -1281,6 +1303,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         public InputAction @UpButton => m_Wrapper.m_Player_UpButton;
         public InputAction @RightButton => m_Wrapper.m_Player_RightButton;
         public InputAction @DownButton => m_Wrapper.m_Player_DownButton;
+        public InputAction @SpaceButton => m_Wrapper.m_Player_SpaceButton;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1329,6 +1352,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @DownButton.started += instance.OnDownButton;
             @DownButton.performed += instance.OnDownButton;
             @DownButton.canceled += instance.OnDownButton;
+            @SpaceButton.started += instance.OnSpaceButton;
+            @SpaceButton.performed += instance.OnSpaceButton;
+            @SpaceButton.canceled += instance.OnSpaceButton;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1372,6 +1398,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @DownButton.started -= instance.OnDownButton;
             @DownButton.performed -= instance.OnDownButton;
             @DownButton.canceled -= instance.OnDownButton;
+            @SpaceButton.started -= instance.OnSpaceButton;
+            @SpaceButton.performed -= instance.OnSpaceButton;
+            @SpaceButton.canceled -= instance.OnSpaceButton;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1567,6 +1596,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         void OnUpButton(InputAction.CallbackContext context);
         void OnRightButton(InputAction.CallbackContext context);
         void OnDownButton(InputAction.CallbackContext context);
+        void OnSpaceButton(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -12,6 +12,7 @@ public class InputSO : ScriptableObject, InputSystem_Actions.IPlayerActions, Inp
         public event Action OnUpButtonEvent;
         public event Action OnRightButtonEvent;
         public event Action OnDownButtonEvent;
+        public event Action OnSpaceEvent;
 
         private void OnEnable()
         { 
@@ -51,7 +52,13 @@ public class InputSO : ScriptableObject, InputSystem_Actions.IPlayerActions, Inp
                 if (context.performed)
                         OnDownButtonEvent?.Invoke();
         }
-        
+
+        public void OnSpaceButton(InputAction.CallbackContext context)
+        {
+                if (context.performed)
+                        OnSpaceEvent?.Invoke();
+        }
+
         #region Unused Events
 
     

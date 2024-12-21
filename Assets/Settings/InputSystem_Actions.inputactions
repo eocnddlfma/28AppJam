@@ -45,7 +45,7 @@
                     "name": "Crouch",
                     "type": "Button",
                     "id": "27c5f898-bc57-4ee1-8800-db469aca5fe3",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -117,6 +117,15 @@
                     "name": "DownButton",
                     "type": "Button",
                     "id": "48b7142a-6560-45ff-9371-1505ff2ef06c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SpaceButton",
+                    "type": "Button",
+                    "id": "44eebed0-23ee-499c-b932-3536ebcaeb8d",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -550,6 +559,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "DownButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "097ef6e4-cca8-4167-b2d7-9eb70977a5c1",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpaceButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
