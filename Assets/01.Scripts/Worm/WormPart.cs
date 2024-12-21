@@ -19,6 +19,7 @@ namespace SSH.Snake
     {
         public Queue<PositionAndTime> PastDataQueue = new Queue<PositionAndTime>();
         
+        
         public virtual void FixedUpdate()
         {
             AddPastPositionToQueue();
@@ -32,6 +33,10 @@ namespace SSH.Snake
             posNTime.PastRotation = transform.rotation;
 
             PastDataQueue.Enqueue(posNTime);
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
         }
     }
 }

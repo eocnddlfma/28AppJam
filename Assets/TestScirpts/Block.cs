@@ -15,7 +15,7 @@ public class Block: MonoBehaviour {
         juwel = type;
     }
     
-    public bool OnDameged(int power = 1) {
+    public bool OnDamaged(int power = 1) {
 
         Health -= power;
         if (Health <= 0) {

@@ -10,22 +10,39 @@ namespace SSH.Snake
     {
         [SerializeField] private InputSO _input;
 
-        private Enums.Direction _inputMoveDirection;
-        private Enums.Direction _currentMoveDirection = Enums.Direction.Up;
+        private Direction _inputMoveDirection;
+        private Direction _currentMoveDirection = Direction.Up;
+        
         private Rigidbody2D _rigidCompo;
+        private Animator _animatorCompo;
+        private SpriteRenderer _rendererCompo;
+        
         private Vector2 _moveVector;
         [SerializeField] private float _moveSpeedPerSecond = 0.4f;
+        [SerializeField]private float _inputInterval = 0.2f;
 
-        public void Start() {
+        private bool isDead = false;
+        private bool isBeforeStart;
+
+        public void Start()
+        {
             _rigidCompo = GetComponent<Rigidbody2D>();
+            _animatorCompo = GetComponentInChildren<Animator>();
+            _rendererCompo = GetComponentInChildren<SpriteRenderer>();
             _input.OnLeftButtonEvent += HandleLeftButtonEvent;
             _input.OnUpButtonEvent += HandleUpButtonEvent;
             _input.OnRightButtonEvent += HandleRightButtonEvent;
             _input.OnDownButtonEvent += HandleDownButtonEvent;
 
+            _animatorCompo.SetBool("Idle", true);
+            isBeforeStart = true;//나중에 이거를 풀어주는게 있어야함.
+            DoStart();
         }
         public void Update()
         {
+            if (isDead) return;
+            if (isBeforeStart) return;
+            
             SetDirection();
             Move();
         }
@@ -42,13 +59,15 @@ namespace SSH.Snake
         {
             (_moveVector, _currentMoveDirection) = _inputMoveDirection switch
             {
-                Enums.Direction.Left  when _currentMoveDirection != Enums.Direction.Right => (Vector2Int.left, Enums.Direction.Left),
-                Enums.Direction.Up    when _currentMoveDirection != Enums.Direction.Down  => (Vector2Int.up, Enums.Direction.Up),
-                Enums.Direction.Right when _currentMoveDirection != Enums.Direction.Left  => (Vector2Int.right, Enums.Direction.Right),
-                Enums.Direction.Down  when _currentMoveDirection != Enums.Direction.Up    => (Vector2Int.down, Enums.Direction.Down),
+                Direction.Left  when _currentMoveDirection != Direction.Right => (Vector2Int.left, Direction.Left),
+                Direction.Up    when _currentMoveDirection != Direction.Down  => (Vector2Int.up, Direction.Up),
+                Direction.Right when _currentMoveDirection != Direction.Left  => (Vector2Int.right, Direction.Right),
+                Direction.Down  when _currentMoveDirection != Direction.Up    => (Vector2Int.down, Direction.Down),
                 _ => (_moveVector, _currentMoveDirection)
             };
-            
+
+            _rendererCompo.flipX = _moveVector is { x: >= 0, y: >= 0 };
+
             // switch (_inputMoveDirection)
             // {
             //     case Enums.Direction.Left:
@@ -78,33 +97,68 @@ namespace SSH.Snake
             // }
         }
 
+        public void DoStart()
+        {
+            isBeforeStart = false;
+            _animatorCompo.SetBool("Idle", false);
+            _animatorCompo.SetBool("Move", true);
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            isDead = true;
+            
+            _animatorCompo.SetBool("Move", false);
+            _animatorCompo.SetBool("Die", false);
+            //죽으면 발생하는 이벤트 발생해주기.
+        }
+
+
         private void OnDrawGizmos()
         {
             
-            Gizmos.DrawLine(transform.position, transform.up/2);
-            Gizmos.DrawLine(transform.position, transform.right/2);
-            Gizmos.DrawLine(transform.position, -transform.right/2);
+            Gizmos.DrawLine(transform.position, transform.position + transform.up);
+            Gizmos.DrawLine(transform.position, transform.position + transform.right);
+            Gizmos.DrawLine(transform.position, transform.position + -transform.right);
             
         }
 
+        
+        #region Input
+
+        private float _lastInput = 0f;
+        private bool IsAbleInput()
+        {
+            if (Time.time > _lastInput + _inputInterval)
+            {
+                _lastInput = Time.time;
+                return true;
+            }
+            return false;
+        }
         private void HandleLeftButtonEvent()
         {
-            _inputMoveDirection = Enums.Direction.Left;
+            if (IsAbleInput())
+                _inputMoveDirection = Direction.Left;
         }
 
         private void HandleUpButtonEvent()
         {
-            _inputMoveDirection = Enums.Direction.Up;
+            if (IsAbleInput())
+                _inputMoveDirection = Direction.Up;
         }
 
         private void HandleRightButtonEvent()
         {
-            _inputMoveDirection = Enums.Direction.Right;
+            if (IsAbleInput())
+                _inputMoveDirection = Direction.Right;
         }
 
         private void HandleDownButtonEvent()
         {
-            _inputMoveDirection = Enums.Direction.Down;
+            if (IsAbleInput())
+                _inputMoveDirection = Direction.Down;
         }
+        #endregion
     }
 }

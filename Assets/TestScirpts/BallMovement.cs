@@ -52,7 +52,7 @@ public class BallMovement : MonoBehaviour {
         var Mineral = other.gameObject.GetComponent<Block>();
         if (Mineral != null) {
 
-            Mineral.OnDameged();
+            Mineral.OnDamaged();
         }
         
         var ballToBlockDirection = FindDirection(transform.position, other.transform.position);
