@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Block: MonoBehaviour {
@@ -16,7 +17,19 @@ public class Block: MonoBehaviour {
         if (mineralType == MineralType.Stone)
             juwel = null;
     }
-    
+
+    private static GameObject folder = null;
+
+    private void Awake() {
+
+        if (folder != null) 
+            return;
+
+        folder = new();
+        folder.name = "Juwels";
+        folder.transform.position = Vector2.zero;
+    }
+
     public bool OnDamaged(int power = 1) {
 
         Health -= power;
@@ -32,7 +45,8 @@ public class Block: MonoBehaviour {
     private void OnDead() {
 
         if(juwel != null) 
-            Instantiate(juwel.Prefab).GetComponent<Juwel>().Set(transform.position, juwel.Score);
+            Instantiate(juwel.Prefab, folder.transform)
+                .GetComponent<Juwel>().Set(transform.position, juwel.Score);
         //TODO: Add score + 1
         Destroy(gameObject);
         

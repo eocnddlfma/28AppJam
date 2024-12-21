@@ -9,12 +9,19 @@ using Random = UnityEngine.Random;
 public class BlockGenerator: MonoBehaviour {
     private const int size = 30;
     private readonly Vector2Int defaultPlayRange = new(7,5);
-    
+    private static GameObject folder = null;
     
     [SerializeField] private SerializableDictionary<MineralType, MineralScriptable> matchInfoType = new();
     private List<MineralType> mineralPercentList = new();
     private void Awake() {
 
+        if (folder == null) {
+        
+            folder = new GameObject();
+            folder.transform.position = Vector3.zero;
+            folder.name = "folder";
+        }
+        
         matchInfoType.Convert();
         foreach (var mineral in matchInfoType.Data) {
 
@@ -36,7 +43,7 @@ public class BlockGenerator: MonoBehaviour {
 
                 if (info.Prefab != null) {
                     
-                    Instantiate(info.Prefab).GetComponent<Block>()
+                    Instantiate(info.Prefab, folder.transform).GetComponent<Block>()
                         .Set(new(i,j), info.JuwelType, mineralPercentList[index]);
                 }
             }
