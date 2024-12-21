@@ -4,7 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 
 [Serializable]
-public class SerializableDictionary<K, V>: Dictionary<K, V> {
+public class SerializableDictionary<K, V> {
 
     [Serializable]
     public class Datas {
@@ -28,5 +28,9 @@ public class SerializableDictionary<K, V>: Dictionary<K, V> {
         foreach (var data in datas) { 
             Data.Add(data.Key, data.Value);
         }
+    }
+
+    public SerializableDictionary() {
+        Convert();
     }
 }
