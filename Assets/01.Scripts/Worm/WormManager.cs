@@ -1,6 +1,7 @@
 using System;
 using SSH.Snake;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WormManager : MonoBehaviour
 {
@@ -13,10 +14,15 @@ public class WormManager : MonoBehaviour
         CreateTail();
     }
 
-    public void CreateTail()
+    private void Update()
     {
-        GameObject newTail = Instantiate(_tailObject);
+    }
+
+    public void CreateTail(Sprite sprite = null)
+    {
+        GameObject newTail = Instantiate(_tailObject, _currentTail.transform.position, Quaternion.identity);
         newTail.GetComponent<WormTail>().SetParent(_currentTail);
+        newTail.GetComponent<SpriteRenderer>().sprite = sprite;
         _currentTail = newTail.GetComponent<WormPart>();
     }
     

@@ -3,8 +3,17 @@ using UnityEngine.InputSystem;
 
 public class Block: MonoBehaviour {
 
-    private MineralType type;
+
+    private JuwelScriptable juwel;
     public int Health { get; protected set; } = 1;
+
+    public void Set(Vector2 pos, JuwelScriptable type) {
+
+        transform.localPosition = pos;
+        gameObject.isStatic = true;
+        
+        juwel = type;
+    }
     
     public bool OnDameged(int power = 1) {
 
@@ -19,7 +28,8 @@ public class Block: MonoBehaviour {
     }
 
     private void OnDead() {
-        //TODO: If this type isn't stone make jowel
+
+        //Instantiate(juwel.Prefab).GetComponent<Juwel>().Set(transform.position, juwel.Score);
         //TODO: Add score + 1
         Destroy(gameObject);
         
