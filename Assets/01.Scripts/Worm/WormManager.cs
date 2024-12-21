@@ -10,7 +10,8 @@ public class WormManager : MonoBehaviour
     [SerializeField] private WormPart _currentTail;
     [SerializeField] private GameObject _tailObject;
     [SerializeField] private Sprite _startTailSprite;
-
+    
+    
     public event Action OnDeadEvent;
 
     private void Awake()

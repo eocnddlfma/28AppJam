@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class AddPickaxe : MonoBehaviour {
-    private int target = 0;
+    private int target = 180;
     [SerializeField] private GameObject pickaxe;
     
     private void next() {
