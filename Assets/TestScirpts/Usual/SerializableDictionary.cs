@@ -1,31 +1,32 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 
-public class SerializableDictionary<K, V>: Dictionary<K, V>, ISerializationCallbackReceiver {
+[Serializable]
+public class SerializableDictionary<K, V>: Dictionary<K, V> {
 
-    [SerializeField] private List<K> keys;
-    [SerializeField] private List<V> values;
-
-    public void OnBeforeSerialize() {
-
-        keys.Clear();
-        values.Clear();
-
-        foreach (KeyValuePair<K, V> pair in this) {
-
-            keys.Add(pair.Key);
-            values.Add(pair.Value);
+    [Serializable]
+    public class Datas {
+        [SerializeField] private K key;
+        public K Key {
+            get => key;
+        }
+        
+        [SerializeField] private V value;
+        public V Value {
+            get => value;
         }
     }
+    
+    [SerializeField] private List<Datas> datas = new();
 
-    public void OnAfterDeserialize() {
+    public Dictionary<K, V> Data { get; private set; } = new();
 
-        this.Clear();
+    public void Convert() {
 
-        for (int i = 0, size = keys.Count; i < size; i++) {
-
-            this.Add(keys[i], values[i]);
+        foreach (var data in datas) { 
+            Data.Add(data.Key, data.Value);
         }
     }
 }

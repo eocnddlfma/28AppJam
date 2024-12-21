@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977e635e540a498eb42f91716882858e, type: 3}
   m_Name: Diamond
   m_EditorClassIdentifier: 
-  image: {fileID: -4120915391325383456, guid: 3d38c8f3b23ae41429743ded72087f18, type: 3}
+  prefab: {fileID: 5991974422445382746, guid: e014fbb3230c6b144ade6eb5106cdad1, type: 3}
   percent: 0.1
-  type: 3
+  juwelType: {fileID: 11400000, guid: 0e98985fa94a04d43be97d34c661b675, type: 2}
