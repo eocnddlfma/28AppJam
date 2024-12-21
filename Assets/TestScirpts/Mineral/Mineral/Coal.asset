@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 977e635e540a498eb42f91716882858e, type: 3}
   m_Name: Coal
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 5991974422445382746, guid: d28eaec720ba1ba40bfdb89169784fc4, type: 3}
   percent: 0.3
-  juwelType: {fileID: 0}
+  juwelType: {fileID: 11400000, guid: ab4cee51923c1f047bf571fcacd02bcd, type: 2}
