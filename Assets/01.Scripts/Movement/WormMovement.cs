@@ -47,21 +47,13 @@ namespace SSH.Snake
         public void Move()
         {
             Vector2Int dir = Vector2Int.zero;
-            switch (_moveDirection)
-            {
-                case Enums.Direction.Left:
-                    dir = new Vector2Int(-1, 0);
-                    break;
-                case Enums.Direction.Up:
-                    dir = new Vector2Int(0, 1);
-                    break;
-                case Enums.Direction.Right:
-                    dir = new Vector2Int(1, 0);
-                    break;
-                case Enums.Direction.Down:
-                    dir = new Vector2Int(0, -1);
-                    break;
-            }
+            dir = _moveDirection switch {
+                Enums.Direction.Left    => Vector2Int.left,
+                Enums.Direction.Up      => Vector2Int.up,
+                Enums.Direction.Right   => Vector2Int.right,
+                Enums.Direction.Down    => Vector2Int.down
+            };
+            
             _rigidCompo.linearVelocity = dir;
         }
     }

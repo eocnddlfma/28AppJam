@@ -16,10 +16,10 @@ namespace SSH.Snake
         {
             base.Start();
             _rigidCompo = GetComponent<Rigidbody2D>();
-            _input.OnLeftButtonEvent += HandleLeftButtonEvent;
-            _input.OnUpButtonEvent += HandleUpButtonEvent;
-            _input.OnRightButtonEvent += HandleRightButtonEvent;
-            _input.OnDownButtonEvent += HandleDownButtonEvent;
+            _input.OnLeftButtonEvent    += HandleLeftButtonEvent;
+            _input.OnUpButtonEvent      += HandleUpButtonEvent;
+            _input.OnRightButtonEvent   += HandleRightButtonEvent;
+            _input.OnDownButtonEvent    += HandleDownButtonEvent;
 
         }
 
@@ -35,23 +35,15 @@ namespace SSH.Snake
 
 
         private void HandleLeftButtonEvent()
-        {
-            _moveDirection = Enums.Direction.Left;
-        }
+            => _moveDirection = Enums.Direction.Left;
 
         private void HandleUpButtonEvent()
-        {
-            _moveDirection = Enums.Direction.Up;
-        }
+            => _moveDirection = Enums.Direction.Up;
 
         private void HandleRightButtonEvent()
-        {
-            _moveDirection = Enums.Direction.Right;
-        }
+            => _moveDirection = Enums.Direction.Right;
 
         private void HandleDownButtonEvent()
-        {
-            _moveDirection = Enums.Direction.Down;
-        }
+            => _moveDirection = Enums.Direction.Down;
     }
 }
