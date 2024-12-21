@@ -86,7 +86,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2441338484569353773
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0caa2064ec814d6db725953a90219545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gravity: 9.8
+  _gravity: 2
   _data: {fileID: 11400000, guid: ab4cee51923c1f047bf571fcacd02bcd, type: 2}
 --- !u!58 &-6462811370871301066
 CircleCollider2D:

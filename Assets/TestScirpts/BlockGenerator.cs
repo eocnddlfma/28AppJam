@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class BlockGenerator: MonoBehaviour {
-    private const int size = 30;
+    [SerializeField]private int size = 30;
 
     [SerializeField] private SerializableDictionary<MineralType, MineralScriptable> matchInfoType = new();
     private List<MineralType> mineralPercentList = new();

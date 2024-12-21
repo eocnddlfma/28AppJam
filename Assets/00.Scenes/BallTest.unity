@@ -148,7 +148,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7dd14a494141309ca872d016395c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mineralList: 00000000010000000200000003000000
+  size: 30
+  matchInfoType:
+    datas:
+    - key: 0
+      value: {fileID: 11400000, guid: 3d902cf584afd6443b4ceca9a2efeeb7, type: 2}
+    - key: 1
+      value: {fileID: 11400000, guid: 05fea064005bbf9438f037a4d3ed2e09, type: 2}
+    - key: 2
+      value: {fileID: 11400000, guid: 31e51b0f679546b40a3048e675236164, type: 2}
+    - key: 3
+      value: {fileID: 11400000, guid: 8888f46f19f46a546a1098ec72ce7136, type: 2}
 --- !u!4 &708170401
 Transform:
   m_ObjectHideFlags: 0
@@ -250,8 +260,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194065364}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.47920942, y: -16.36894, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

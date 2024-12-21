@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e560b7bc79403b8af0e364d1b736fb, type: 3}
   m_Name: Gold
   m_EditorClassIdentifier: 
-  image: {fileID: -6301429047446442448, guid: bcb64c447dbdc194296aebb0462239bc, type: 3}
+  image: {fileID: 21300000, guid: bcb64c447dbdc194296aebb0462239bc, type: 3}
   prefab: {fileID: 6430458220241957614, guid: a4e8ac0811f18cd4abcb8ec895a491f7, type: 3}
   score: 10
