@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BSM.Core.Audios
+namespace SSH.Core.Audios
 {
     [System.Serializable]
     public class AudioPair

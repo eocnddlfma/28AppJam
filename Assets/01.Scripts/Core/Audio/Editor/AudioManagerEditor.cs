@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditor.EditorTools;
 using UnityEngine;
 
-namespace BSM.Core.Audios
+namespace SSH.Core.Audios
 {
     [CustomEditor(typeof(AudioManager))]
     public class AudioManagerEditor : Editor

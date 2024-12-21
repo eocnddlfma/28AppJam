@@ -1,4 +1,5 @@
 using System;
+using SSH.Core.Audios;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -54,7 +55,7 @@ public class BallMovement : MonoBehaviour {
 
         var Mineral = other.gameObject.GetComponent<Block>();
         if (Mineral != null) {
-
+            AudioManager.instance.PlayAudio("PickaxeHit");
             Mineral.OnDamaged();
         }
         
