@@ -19,6 +19,7 @@ namespace SSH.Snake
         
         private Vector2 _moveVector;
         [SerializeField] private float _moveSpeedPerSecond = 0.4f;
+        [SerializeField]private float _inputInterval = 0.2f;
 
         private bool isDead = false;
         private bool isBeforeStart;
@@ -124,24 +125,39 @@ namespace SSH.Snake
 
         
         #region Input
+
+        private float _lastInput = 0f;
+        private bool IsAbleInput()
+        {
+            if (Time.time > _lastInput + _inputInterval)
+            {
+                _lastInput = Time.time;
+                return true;
+            }
+            return false;
+        }
         private void HandleLeftButtonEvent()
         {
-            _inputMoveDirection = Enums.Direction.Left;
+            if (IsAbleInput())
+                _inputMoveDirection = Enums.Direction.Left;
         }
 
         private void HandleUpButtonEvent()
         {
-            _inputMoveDirection = Enums.Direction.Up;
+            if (IsAbleInput())
+                _inputMoveDirection = Enums.Direction.Up;
         }
 
         private void HandleRightButtonEvent()
         {
-            _inputMoveDirection = Enums.Direction.Right;
+            if (IsAbleInput())
+                _inputMoveDirection = Enums.Direction.Right;
         }
 
         private void HandleDownButtonEvent()
         {
-            _inputMoveDirection = Enums.Direction.Down;
+            if (IsAbleInput())
+                _inputMoveDirection = Enums.Direction.Down;
         }
         #endregion
     }

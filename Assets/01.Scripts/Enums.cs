@@ -10,4 +10,11 @@ public class Enums
         Down,
         None
     }
+    
+    public enum MineralType {   
+        Stone,
+        Coal,
+        Gold,
+        Diamond
+    };
 }

@@ -26,11 +26,10 @@ public static class UsualVector {
     public static Vector3 ToVecotr3(this Vector2 target) => new(target.x, target.y, 0);
 
     public static float Distance(this Vector2 target) 
-        => Mathf.Sqrt(target.x * target.x + target.y * target.y);
+        => target.magnitude;
 
     public static Vector2 SetPower(this Vector2 target, float power) {
-
-        var dist = target.Distance();
+        var dist = target.magnitude;
         if (dist == 0) {
             target = Vector2.up;
             dist = target.Distance();
