@@ -49,6 +49,12 @@ public class BallMovement : MonoBehaviour {
     private Vector2 before = Vector2.zero;
     private void OnCollisionEnter2D(Collision2D other) {
 
+        var Mineral = other.gameObject.GetComponent<Block>();
+        if (Mineral != null) {
+
+            Mineral.OnDameged();
+        }
+        
         var ballToBlockDirection = FindDirection(transform.position, other.transform.position);
         if (before == ballToBlockDirection) return;
 
