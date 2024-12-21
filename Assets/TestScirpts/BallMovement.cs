@@ -9,17 +9,22 @@ public class BallMovement : MonoBehaviour {
     Rigidbody2D player = null;
     [SerializeField] private float power = 30;
     [SerializeField] private Vector2 moveDirection = Vector2.zero;
-    private Vector2 before = Vector2.zero;
 
+    private Vector2 velo = Vector2.zero;
     private Quaternion currentView;
     
     private const int collisionDegree = 90;
+
     private readonly Vector2[] directions = new Vector2[] {
         Vector2.up,
         Vector2.down,
         Vector2.left,
         Vector2.right
     };
+
+    private void VelocityUpdate() {
+        player.linearVelocity = velo;
+    }
     
     void Awake() {
 
@@ -28,27 +33,32 @@ public class BallMovement : MonoBehaviour {
         
         if (player == null) {
             player = GetComponent<Rigidbody2D>();
-            player.AddForce(power * (moveDirection.normalized));
+            velo = (power * (moveDirection.normalized));
+            VelocityUpdate();
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
+    private Vector2 before = Vector2.zero;
+    /*private void OnCollisionEnter2D(Collision2D other) {
 
         var ballToBlockDirection = FindDirection(transform.position, other.transform.position);
-        var ballToBlockDegree = ballToBlockDirection.ToDegree();
-        
-        if (before == ballToBlockDirection) return;
-        before = ballToBlockDirection;
+        if (before == ballToBlockDirection)
+            return;
 
-        var playerVelocity = player.linearVelocity.normalized;
-        var playerDegree = playerVelocity.ToDegree();
+        before = ballToBlockDirection;
         
-        var addDegree = UsualQuarternion.ZRotation(90);
-        float result =  playerDegree > ballToBlockDegree ? -1 : 1;
-        var rotation = addDegree.Multiple(result);
-        currentView = currentView.Add(addDegree);
-        Debug.Log(currentView.eulerAngles);
-        player.linearVelocity = 10 * currentView.eulerAngles.z.Todirection().normalized;
+        Debug.Log(ballToBlockDirection);
+
+        var temp = velo;
+        if (ballToBlockDirection.x == 0) {
+            velo.x *= -1;
+        }
+            
+        else {
+            velo.y = -1;
+        }
+
+        VelocityUpdate();
     }
 
     private Vector2 FindDirection(Vector2 ball, Vector2 wall) {
@@ -70,5 +80,5 @@ public class BallMovement : MonoBehaviour {
         }
 
         return ballToBlockDirection;
-    }
+    }*/
 }

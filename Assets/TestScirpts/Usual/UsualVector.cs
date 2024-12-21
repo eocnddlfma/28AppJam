@@ -17,7 +17,7 @@ public static class UsualVector {
 
 
     public static float ToDegree(this Vector2 direction) =>
-        Mathf.Atan2(direction.x, direction.y);
+        Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
     
     public static Vector2 Todirection(this float degree) =>
         new(Mathf.Cos(degree), Mathf.Sin(degree));
