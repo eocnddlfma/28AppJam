@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
-
+using DG.Tweening;
 
 namespace SSH.Snake
 {
@@ -16,10 +16,9 @@ namespace SSH.Snake
     
     public class WormMovement : MonoBehaviour
     {
-        protected Enums.Direction _moveDirection;
         public Queue<PositionAndTime> PastDataQueue = new Queue<PositionAndTime>();
         
-        public virtual void Update()
+        public virtual void FixedUpdate()
         {
             AddPastPositionToQueue();
         }
