@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12e560b7bc79403b8af0e364d1b736fb, type: 3}
-  m_Name: Coal
+  m_Name: Gold
   m_EditorClassIdentifier: 
-  image: {fileID: 5725184139431673129, guid: 40d1b66abfbda424e81a9e21854811e9, type: 3}
-  score: 5
+  prefab: {fileID: 6430458220241957614, guid: a4e8ac0811f18cd4abcb8ec895a491f7, type: 3}
+  score: 10

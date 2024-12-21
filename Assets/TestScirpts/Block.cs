@@ -29,7 +29,7 @@ public class Block: MonoBehaviour {
 
     private void OnDead() {
 
-        //Instantiate(juwel.Prefab).GetComponent<Juwel>().Set(transform.position, juwel.Score);
+        Instantiate(juwel.Prefab).GetComponent<Juwel>().Set(transform.position, juwel.Score);
         //TODO: Add score + 1
         Destroy(gameObject);
         
