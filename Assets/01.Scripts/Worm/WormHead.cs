@@ -12,21 +12,36 @@ namespace SSH.Snake
 
         private Enums.Direction _inputMoveDirection;
         private Enums.Direction _currentMoveDirection = Enums.Direction.Up;
+        
         private Rigidbody2D _rigidCompo;
+        private Animator _animatorCompo;
+        private SpriteRenderer _rendererCompo;
+        
         private Vector2 _moveVector;
         [SerializeField] private float _moveSpeedPerSecond = 0.4f;
+
+        private bool isDead = false;
+        private bool isBeforeStart;
 
         public void Start()
         {
             _rigidCompo = GetComponent<Rigidbody2D>();
+            _animatorCompo = GetComponentInChildren<Animator>();
+            _rendererCompo = GetComponentInChildren<SpriteRenderer>();
             _input.OnLeftButtonEvent += HandleLeftButtonEvent;
             _input.OnUpButtonEvent += HandleUpButtonEvent;
             _input.OnRightButtonEvent += HandleRightButtonEvent;
             _input.OnDownButtonEvent += HandleDownButtonEvent;
 
+            _animatorCompo.SetBool("Idle", true);
+            isBeforeStart = true;//나중에 이거를 풀어주는게 있어야함.
+            DoStart();
         }
         public void Update()
         {
+            if (isDead) return;
+            if (isBeforeStart) return;
+            
             SetDirection();
             Move();
         }
@@ -49,7 +64,9 @@ namespace SSH.Snake
                 Enums.Direction.Down  when _currentMoveDirection != Enums.Direction.Up    => (Vector2Int.down, Enums.Direction.Down),
                 _ => (_moveVector, _currentMoveDirection)
             };
-            
+
+            _rendererCompo.flipX = _moveVector is { x: >= 0, y: >= 0 };
+
             // switch (_inputMoveDirection)
             // {
             //     case Enums.Direction.Left:
@@ -79,15 +96,34 @@ namespace SSH.Snake
             // }
         }
 
+        public void DoStart()
+        {
+            isBeforeStart = false;
+            _animatorCompo.SetBool("Idle", false);
+            _animatorCompo.SetBool("Move", true);
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            isDead = true;
+            
+            _animatorCompo.SetBool("Move", false);
+            _animatorCompo.SetBool("Die", false);
+            //죽으면 발생하는 이벤트 발생해주기.
+        }
+
+
         private void OnDrawGizmos()
         {
             
-            Gizmos.DrawLine(transform.position, transform.up/2);
-            Gizmos.DrawLine(transform.position, transform.right/2);
-            Gizmos.DrawLine(transform.position, -transform.right/2);
+            Gizmos.DrawLine(transform.position, transform.position + transform.up);
+            Gizmos.DrawLine(transform.position, transform.position + transform.right);
+            Gizmos.DrawLine(transform.position, transform.position + -transform.right);
             
         }
 
+        
+        #region Input
         private void HandleLeftButtonEvent()
         {
             _inputMoveDirection = Enums.Direction.Left;
@@ -107,5 +143,6 @@ namespace SSH.Snake
         {
             _inputMoveDirection = Enums.Direction.Down;
         }
+        #endregion
     }
 }
