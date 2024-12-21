@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Gold
   m_EditorClassIdentifier: 
   prefab: {fileID: 5991974422445382746, guid: bb28f6547252b3b4981fe515280538fa, type: 3}
-  percent: 0.2
+  percent: 2
   juwelType: {fileID: 11400000, guid: 79bd2cb899e43c445a1d3fda6b8623ac, type: 2}

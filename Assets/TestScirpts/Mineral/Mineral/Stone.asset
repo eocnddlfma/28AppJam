@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Stone
   m_EditorClassIdentifier: 
   prefab: {fileID: 5991974422445382746, guid: 33f1448b1eef6e747b23aa6b0cfee774, type: 3}
-  percent: 0.4
+  percent: 12
   juwelType: {fileID: 11400000, guid: 3a8a9cb5ace5b0c49afb8de4d45a3562, type: 2}

@@ -15,8 +15,9 @@ public class Juwel: MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.TryGetComponent(out WormPart wormPart))
-        {
+        if (other.transform.TryGetComponent(out WormPart wormPart)) {
+            
+            ScoreManager.Instance.AddScore(Value);
             WormManager.Instance.CreateTail(Vector3.zero, GetComponent<SpriteRenderer>().sprite);
             Destroy(gameObject);
         }
