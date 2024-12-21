@@ -16,8 +16,7 @@ namespace SSH.Snake
         private Vector2 _moveVector;
         [SerializeField] private float _moveSpeedPerSecond = 0.4f;
 
-        public void Start()
-        {
+        public void Start() {
             _rigidCompo = GetComponent<Rigidbody2D>();
             _input.OnLeftButtonEvent += HandleLeftButtonEvent;
             _input.OnUpButtonEvent += HandleUpButtonEvent;
