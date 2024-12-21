@@ -110,6 +110,7 @@ namespace SSH.Snake
         {
             if (other.transform.CompareTag("Tail") || other.transform.CompareTag("Mineral") || other.transform.CompareTag("Weapon"))
             {
+                print(other.transform.tag);
                 isDead = true;
                 
                 _animatorCompo.SetBool("Move", false);

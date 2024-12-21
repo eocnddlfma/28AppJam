@@ -17,9 +17,7 @@ public class Juwel: MonoBehaviour {
     {
         if (other.transform.TryGetComponent(out WormPart wormPart))
         {
-            //점수 추가해줘야함
-            print("isitworking???");
-            WormManager.Instance.CreateTail(other.transform.position, other.transform.GetComponent<SpriteRenderer>().sprite);
+            WormManager.Instance.CreateTail(Vector3.zero, GetComponent<SpriteRenderer>().sprite);
             Destroy(gameObject);
         }
     }

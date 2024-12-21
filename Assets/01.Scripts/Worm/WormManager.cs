@@ -27,10 +27,10 @@ public class WormManager : MonoBehaviour
 
     private void Start()
     {
-        CreateTail(Vector3.right * 4, _startTailSprite);
-        CreateTail(Vector3.right, _startTailSprite);
-        CreateTail(Vector3.right, _startTailSprite);
-        CreateTail(Vector3.right, _startTailSprite);
+        CreateTail(Vector3.right * 2, _startTailSprite);
+        CreateTail(Vector3.zero, _startTailSprite);
+        CreateTail(Vector3.zero, _startTailSprite);
+        CreateTail(Vector3.zero, _startTailSprite);
     }
 
     private void Update()
@@ -40,7 +40,7 @@ public class WormManager : MonoBehaviour
 
     public void CreateTail(Vector3 offset ,Sprite sprite = null)
     {
-        GameObject newTail = Instantiate(_tailObject, _tailObject.transform.position + offset,Quaternion.identity);
+        GameObject newTail = Instantiate(_tailObject, _currentTail.transform.position + offset,Quaternion.identity);
         newTail.GetComponent<WormTail>().SetParent(_currentTail);
         newTail.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
         _currentTail = newTail.GetComponent<WormPart>();
