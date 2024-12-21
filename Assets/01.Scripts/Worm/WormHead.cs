@@ -21,6 +21,8 @@ namespace SSH.Snake
         [SerializeField] private float _moveSpeedPerSecond = 0.4f;
         [SerializeField]private float _inputInterval = 0.2f;
 
+        [SerializeField] private GameObject _deadEffect;
+        
         private bool isDead = false;
         private bool isBeforeStart;
 
@@ -114,9 +116,12 @@ namespace SSH.Snake
                 _animatorCompo.SetBool("Die", true);
 
                 _rigidCompo.linearVelocity = Vector3.zero;
+
+                Instantiate(_deadEffect, transform.position, Quaternion.identity);
                 
                 WormManager.Instance.InvokeDeadEvent();
 
+                Destroy(gameObject);
             }
         }
         
